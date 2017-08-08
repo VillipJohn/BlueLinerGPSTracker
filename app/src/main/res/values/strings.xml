@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">BlueLinerGPSTracker</string>
+    <string name="upload_website">upload website</string>
+    <string name="tracking_is_off">Відстеження вимкнено</string>
+    <string name="tracking_is_on">Відстеження активовано</string>
+    <string name="upload_frequency">Оновити веб-сайт кожні:</string>
+
+    <string name="five_seconds">5 секунд</string>
+    <string name="ten_seconds">10 секунд</string>
+    <string name="fifteen_seconds">15 секунд</string>
+    <string name="twenty_seconds">20 секунд</string>
+    <string name="twenty_five_seconds">25 секунд</string>
+    <string name="thirty_seconds">30 секунд</string>
+    <string name="sixty_seconds">60 секунд</string>
+
+    <string name="user_needs_to_restart_tracking">Будь ласка, перезапустіть відстеження, щоб змінити часовий інтервал</string>
+    <string name="textfield_empty_or_spaces">Будь ласка заповніть поле веб-сайт, і воно не може мати пробіл</string>
+    <string name="gps_tracker_is_working">GPS Tracker працює</string>
+
+    <string name="default_upload_website">http://45.55.132.244/blue_lainer/bl_api_v1/traking/</string>
+
+    <string name="click_to_go_to_the_application">Натисніть, щоб перейти до додатка</string>
+</resources>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "309935702079",
+    "firebase_url": "https://bluelinergpstracker.firebaseio.com",
+    "project_id": "bluelinergpstracker",
+    "storage_bucket": "bluelinergpstracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309935702079:android:8d3d4223a75b7c7c",
+        "android_client_info": {
+          "package_name": "com.villip.bluelinergpstracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309935702079-n78mqt530dk0r6ka6hr1eqhb44vsl3ce.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.villip.bluelinergpstracker",
+            "certificate_hash": "f7e99e7a032c489055698e67c97e9a4cff4306be"
+          }
+        },
+        {
+          "client_id": "309935702079-lkd5htkfg8ue1t1746vu084t2b1j6tb5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDokX0tmIcxh7Nq0nUM5VFK2KLW2lklSE8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309935702079-lkd5htkfg8ue1t1746vu084t2b1j6tb5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
