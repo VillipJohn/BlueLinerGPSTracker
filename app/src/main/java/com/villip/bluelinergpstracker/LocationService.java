@@ -40,8 +40,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LocationService extends Service {
-    private boolean currentlyProcessingLocation = false;
-
     private static final String TAG = "myLOGLocationService";
 
     private FusedLocationProviderClient mFusedLocationClient;
@@ -77,6 +75,15 @@ public class LocationService extends Service {
 
     private Link mLink;
 
+    //private Handler handler;
+
+    //private int intervalUpdateWebsite;
+
+    //LocationManager mLocationManager;
+    //LocationListener mLocationListener;
+
+    //private Runnable mRunnable;
+
     public LocationService() {
     }
 
@@ -100,6 +107,34 @@ public class LocationService extends Service {
 
         mLink = retrofit.create(Link.class);
 
+   /*     // Acquire a reference to the system Location Manager
+        mLocationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        // Define a listener that responds to location updates
+        mLocationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                // Called when a new location is found by the network location provider.
+                mLocation = location;
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+            public void onProviderEnabled(String provider) {}
+
+            public void onProviderDisabled(String provider) {}
+        };
+
+        // Register the listener with the Location Manager to receive location updates
+        try {
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+
+        intervalUpdateWebsite = mSharedPreferences.getInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 5)*1000;
+
+        requestRepeatingLocationUpdates();
+*/
 
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -139,7 +174,6 @@ public class LocationService extends Service {
     private Notification getNotification() {
         Log.i(TAG, "getNotification");
 
-
             //These three lines makes Notification to open activity after clicking on it
             Intent notificationIntent = new Intent(this, StartPasswordActivity.class);
             notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -170,27 +204,57 @@ public class LocationService extends Service {
             //startForeground(DEFAULT_NOTIFICATION_ID, notification);
         }
 
+        /*private void requestRepeatingLocationUpdates() {
+            Log.i(TAG, "requestRepeatingLocation");
+
+            // Create the Handler object (on the main thread by default)
+            handler = new Handler();
+           // Define the code block to be executed
+            mRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    Log.i(TAG, "run");
+
+                    // Do something here on the main thread
 
 
-    private void getLastLocation() {
-        Log.i(TAG, "getLastLocation");
-        try {
-            mFusedLocationClient.getLastLocation()
-                    .addOnCompleteListener(new OnCompleteListener<Location>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Location> task) {
-                            if (task.isSuccessful() && task.getResult() != null) {
-                                mLocation = task.getResult();
-                            } else {
-                                Log.w(TAG, "Failed to get location.");
+                    try {
+                        //Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        sendLocationDataToWebsite();
+                    } catch (SecurityException e) {
+                        e.printStackTrace();
+                    }
+
+                    // Repeat this the same runnable code block again another 2 seconds
+                    // 'this' is referencing the Runnable object
+                    handler.postDelayed(this, intervalUpdateWebsite);
+                }
+            };
+            // Start the initial runnable task by posting through the handler
+            handler.post(mRunnable);
+        }*/
+
+        private void getLastLocation() {
+            Log.i(TAG, "getLastLocation");
+            try {
+                mFusedLocationClient.getLastLocation()
+                        .addOnCompleteListener(new OnCompleteListener<Location>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Location> task) {
+                                if (task.isSuccessful() && task.getResult() != null) {
+                                    mLocation = task.getResult();
+                                } else {
+                                    Log.w(TAG, "Failed to get location.");
+                                }
                             }
-                        }
-                    });
+                        });
 
-        } catch (SecurityException unlikely) {
-            Log.e(TAG, "Lost location permission." + unlikely);
+            } catch (SecurityException unlikely) {
+                Log.e(TAG, "Lost location permission." + unlikely);
+            }
         }
-    }
+
+
 
     /**
      * Sets the location request parameters.
@@ -223,7 +287,7 @@ public class LocationService extends Service {
         }
     }
 
-    private void onNewLocation(Location location) {
+    /*private void onNewLocation(Location location) {
         Log.i(TAG, "onNewLocation");
 
         mLocation = location;
@@ -254,15 +318,17 @@ public class LocationService extends Service {
                     + "\n" + "speed: " + strSpeed, Toast.LENGTH_LONG).show();
         }
     }
-
+*/
     private void sendLocationDataToWebsite(Location location){
         String imei = mSharedPreferences.getString(APP_PREFERENCES_IMEI, "");
+
+        mLocation = location;
 
         longitude = mLocation.getLongitude();
         latitude = mLocation.getLatitude();
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        strTime = dateFormat.format(new Date(location.getTime()));
+        strTime = dateFormat.format(new Date(mLocation.getTime()));
 
         strSpeed = String.valueOf(mLocation.getSpeed()) + " km/h";
 
@@ -327,6 +393,9 @@ public class LocationService extends Service {
     @Override
     public void onDestroy() {
         Log.i(TAG, "onDestroy");
+
+        // Removes pending code execution
+        //handler.removeCallbacks(mRunnable);
         mFusedLocationClient.removeLocationUpdates(mLocationCallback);
         mServiceHandler.removeCallbacksAndMessages(null);
     }
