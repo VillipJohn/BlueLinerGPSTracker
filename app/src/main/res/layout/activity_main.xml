@@ -56,37 +56,10 @@
         android:layout_marginTop="10dp">
 
         <RadioButton
-            android:id="@+id/interval5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/five_seconds">
-        </RadioButton>
-
-        <RadioButton
-            android:id="@+id/interval10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ten_seconds">
-        </RadioButton>
-
-        <RadioButton
-            android:id="@+id/interval15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fifteen_seconds">
-        </RadioButton>
-        <RadioButton
             android:id="@+id/interval20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/twenty_seconds">
-        </RadioButton>
-
-        <RadioButton
-            android:id="@+id/interval25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/twenty_five_seconds">
         </RadioButton>
 
         <RadioButton
@@ -95,11 +68,38 @@
             android:layout_height="wrap_content"
             android:text="@string/thirty_seconds">
         </RadioButton>
+
+        <RadioButton
+            android:id="@+id/interval40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forty_seconds">
+        </RadioButton>
+        <RadioButton
+            android:id="@+id/interval50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fifty_seconds">
+        </RadioButton>
+
         <RadioButton
             android:id="@+id/interval60"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sixty_seconds">
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/interval90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ninety_seconds">
+        </RadioButton>
+        <RadioButton
+            android:id="@+id/interval120"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/one_hundred_and_twenty_seconds">
         </RadioButton>
     </RadioGroup>
 

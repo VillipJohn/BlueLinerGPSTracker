@@ -106,29 +106,29 @@ public class MainActivity extends AppCompatActivity {
         mUploadWebsiteEditText.setText(uploadWebsiteString);
 
 
-        int intervalInMinutes = mSharedPreferences.getInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 5);
+        int intervalInMinutes = mSharedPreferences.getInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 20);
 
         switch (intervalInMinutes) {
-            case 5:
-                mIntervalRadioGroup.check(R.id.interval5);
-                break;
-            case 10:
-                mIntervalRadioGroup.check(R.id.interval10);
-                break;
-            case 15:
-                mIntervalRadioGroup.check(R.id.interval15);
-                break;
             case 20:
                 mIntervalRadioGroup.check(R.id.interval20);
-                break;
-            case 25:
-                mIntervalRadioGroup.check(R.id.interval25);
                 break;
             case 30:
                 mIntervalRadioGroup.check(R.id.interval30);
                 break;
+            case 40:
+                mIntervalRadioGroup.check(R.id.interval40);
+                break;
+            case 50:
+                mIntervalRadioGroup.check(R.id.interval50);
+                break;
             case 60:
                 mIntervalRadioGroup.check(R.id.interval60);
+                break;
+            case 90:
+                mIntervalRadioGroup.check(R.id.interval90);
+                break;
+            case 120:
+                mIntervalRadioGroup.check(R.id.interval120);
                 break;
         }
     }
@@ -141,26 +141,26 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
 
         switch (mIntervalRadioGroup.getCheckedRadioButtonId()) {
-            case R.id.interval5:
-                editor.putInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 5);
-                break;
-            case R.id.interval10:
-                editor.putInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 10);
-                break;
-            case R.id.interval15:
-                editor.putInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 15);
-                break;
             case R.id.interval20:
                 editor.putInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 20);
-                break;
-            case R.id.interval25:
-                editor.putInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 25);
                 break;
             case R.id.interval30:
                 editor.putInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 30);
                 break;
+            case R.id.interval40:
+                editor.putInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 40);
+                break;
+            case R.id.interval50:
+                editor.putInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 50);
+                break;
             case R.id.interval60:
                 editor.putInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 60);
+                break;
+            case R.id.interval90:
+                editor.putInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 90);
+                break;
+            case R.id.interval120:
+                editor.putInt(APP_PREFERENCES_INTERVAL_UPDATE_WEBSITE, 120);
                 break;
         }
 

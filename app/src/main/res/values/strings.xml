@@ -5,13 +5,14 @@
     <string name="tracking_is_on">Відстеження активовано</string>
     <string name="upload_frequency">Оновити веб-сайт кожні:</string>
 
-    <string name="five_seconds">5 секунд</string>
-    <string name="ten_seconds">10 секунд</string>
-    <string name="fifteen_seconds">15 секунд</string>
+
     <string name="twenty_seconds">20 секунд</string>
-    <string name="twenty_five_seconds">25 секунд</string>
     <string name="thirty_seconds">30 секунд</string>
+    <string name="forty_seconds">40 секунд</string>
+    <string name="fifty_seconds">50 секунд</string>
     <string name="sixty_seconds">60 секунд</string>
+    <string name="ninety_seconds">90 секунд</string>
+    <string name="one_hundred_and_twenty_seconds">120 секунд</string>
 
     <string name="user_needs_to_restart_tracking">Будь ласка, перезапустіть відстеження, щоб змінити часовий інтервал</string>
     <string name="textfield_empty_or_spaces">Будь ласка заповніть поле веб-сайт, і воно не може мати пробіл</string>

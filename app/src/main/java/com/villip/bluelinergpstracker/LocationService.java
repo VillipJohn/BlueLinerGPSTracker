@@ -16,7 +16,6 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -46,7 +45,7 @@ public class LocationService extends Service {
 
     private double longitude, latitude;
 
-    private String strTime, strSpeed;
+    private String imei, strTime, strSpeed;
 
     private SharedPreferences mSharedPreferences;
     private static final String APP_PREFERENCES = "mySettings";
@@ -189,9 +188,12 @@ public class LocationService extends Service {
                     //.setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.large))   // большая картинка
                     //.setTicker(Ticker)
                     .setContentTitle(getResources().getString(R.string.gps_tracker_is_working)) //Заголовок
-                    .setContentText(getResources().getString(R.string.click_to_go_to_the_application)) // Текст уведомления
+                    .setContentText("text")//.setContentText(getResources().getString(R.string.click_to_go_to_the_application)) // Текст уведомления
+                    .setStyle(new NotificationCompat.BigTextStyle()
+                            .bigText(getLocationText()))
                     .setWhen(System.currentTimeMillis());
 
+            //Notification notification = new Notification.BigTextStyle().bigText(getLocationText());
             Notification notification;
             if (android.os.Build.VERSION.SDK_INT<=15) {
                 notification = builder.getNotification(); // API-15 and lower
@@ -203,6 +205,14 @@ public class LocationService extends Service {
 
             //startForeground(DEFAULT_NOTIFICATION_ID, notification);
         }
+
+    private String getLocationText() {
+        return mLocation == null ? "Unknown location" :
+                "long: " + longitude
+                + "\n" + "lat: " + latitude
+                + "\n" + "time: " + strTime
+                + "\n" + "speed: " + strSpeed ;
+    }
 
         /*private void requestRepeatingLocationUpdates() {
             Log.i(TAG, "requestRepeatingLocation");
@@ -320,7 +330,7 @@ public class LocationService extends Service {
     }
 */
     private void sendLocationDataToWebsite(Location location){
-        String imei = mSharedPreferences.getString(APP_PREFERENCES_IMEI, "");
+        imei = mSharedPreferences.getString(APP_PREFERENCES_IMEI, "");
 
         mLocation = location;
 
@@ -361,11 +371,16 @@ public class LocationService extends Service {
                 + "\n" + "speed: " + strSpeed
         );
 
-        Toast.makeText(getApplicationContext(), "imei: " + imei
+        // Update notification content if running as a foreground service.
+        if (serviceIsRunningInForeground(this)) {
+            mNotificationManager.notify(NOTIFICATION_ID, getNotification());
+        }
+
+       /* Toast.makeText(getApplicationContext(), "imei: " + imei
                 + "\n" + "longitude: " + longitude
                 + "\n" + "latitude: " + latitude
                 + "\n" + "time: " + strTime
-                + "\n" + "speed: " + strSpeed, Toast.LENGTH_LONG).show();
+                + "\n" + "speed: " + strSpeed, Toast.LENGTH_LONG).show();*/
     }
 
 
